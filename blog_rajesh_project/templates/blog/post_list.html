@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+}
+
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.fa-google {
+  background: #dd4b39;
+  color: white;
+}
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.fa-youtube {
+  background: #bb0000;
+  color: white;
+}
+
+.fa-instagram {
+    background: #125688;
+    color: white;
+}
+</style>
+</head>
+<body>
+<!-- Add font awesome icons -->
+
+
+
+
+{% extends 'blog/base.html' %}
+ {% block title_block %}RAJESH's BLOCK HOME PAGE {% endblock %}
+
+     {% block content %}
+         <h1>Welcome to Rajesh's Blog</h1>
+
+         <h3 style="color: lightcoral; text-align: center">News, Events, Entertainment, Lifestyle, Fashion, Beauty, Inspiration </h3><hr>
+         {% if tag %}
+            <h2>Post Tagged with '{{ tag.name }}'</h2>
+         {% endif %}
+         {% for post in post_list %} <!--post_list title show-->
+            <a href="{{ post.get_absolute_url }}"> <h2>{{ post.title }}</h2></a>
+             <h2> {{ post.title }}</h2>
+           <p id="date">  published on {{ post.publish }} by {{ post.author|title }}</p>
+
+             <!--Tag is use to publish-->
+
+
+             {{ post.body|truncatechars:30 |linebreaks }}
+         {% endfor %}
+         {% include 'blog/paginator.html' with page=post_list %}
+
+
+         <div class="container" style="border: #55ACEE">
+         <h2>Social Media Account</h2>
+<a href="#" class="fa fa-instagram"></a>
+<a href="#" class="fa fa-facebook"></a>
+<a href="https://twitter.com/rajesh224kr" class="fa fa-twitter"></a>
+<a href="https://www.linkedin.com/in/rajesh-5857b5118/" class="fa fa-linkedin"></a>
+</div>
+     {% endblock %}
+
+</body>
